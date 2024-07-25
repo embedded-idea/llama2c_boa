@@ -58,9 +58,9 @@ int ka_timeout;
 int ka_max;
 
 /* These came from log.c */
-char *error_log_name;
-char *access_log_name;
-char *cgi_log_name;
+extern char *error_log_name;
+extern char *access_log_name;
+extern char *cgi_log_name;
 
 int use_localtime;
 
