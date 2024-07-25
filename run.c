@@ -916,6 +916,7 @@ int main(int argc, char *argv[]) {
     char *mode = "generate";    // generate|chat
     char *system_prompt = NULL; // the (optional) system prompt to use in chat mode
 
+    #ifndef USEBOA
     // poor man's C argparse so we can override the defaults above from the command line
     if (argc >= 2) { checkpoint_path = argv[1]; } else { error_usage(); }
     for (int i = 2; i < argc; i+=2) {
@@ -934,6 +935,27 @@ int main(int argc, char *argv[]) {
         else if (argv[i][1] == 'y') { system_prompt = argv[i + 1]; }
         else { error_usage(); }
     }
+    #else
+    //boa support{
+    char *date;
+    char starts[50];
+    printf("content-type:text/html;charset=utf-8\n\n");
+    printf("<TITLE>MIN AI</TITLE>");
+    printf("<H3>chat box</h3>");
+    date=getenv("QUERY_STRING");
+    if(date==NULL)
+        printf("<p>error：no data or input error</p>");
+    else
+    {
+       sscanf(date,"starts=%s",starts);
+       printf("<p>starts=%s</p>",starts);
+       printf("%s",date);
+       prompt = starts;//we place starts text to feed the stories15M.bin model
+    }
+    checkpoint_path = "stories15M.bin";//make sure you have this model in /usr/lib/cgi-bin, together 
+				       //with other programs /usr/lib/cgi-bin/llama2.cgi and /usr/lib/cgi-bin/tokenizer.bin
+    //boa support}
+    #endif
 
     // parameter validation/overrides
     if (rng_seed <= 0) rng_seed = (unsigned int)time(NULL);
