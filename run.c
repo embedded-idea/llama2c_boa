@@ -947,9 +947,10 @@ int main(int argc, char *argv[]) {
         printf("<p>error：no data or input error</p>");
     else
     {
+       memset(starts,0,sizeof(starts));
        sscanf(date,"starts=%s",starts);
        printf("<p>starts=%s</p>",starts);
-       printf("%s",date);
+       //printf("%s",date);
        prompt = starts;//we place starts text to feed the stories15M.bin model
     }
     checkpoint_path = "stories15M.bin";//make sure you have this model in /usr/lib/cgi-bin, together 
