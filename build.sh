@@ -6,11 +6,10 @@ pushd boa-0.94.13
 cd src
 ./configure
 make
-cd ..
-
 popd 
 
 sudo mkdir -p /usr/lib/cgi-bin
+sudo mkdir -p /var/log/boa
 
 sudo cp run /usr/lib/cgi-bin/llama2.cgi
 sudo cp tokenizer.bin /usr/lib/cgi-bin/
