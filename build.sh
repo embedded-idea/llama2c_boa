@@ -14,6 +14,7 @@ sudo mkdir -p /usr/lib/cgi-bin
 
 sudo cp run /usr/lib/cgi-bin/llama2.cgi
 sudo cp tokenizer.bin /usr/lib/cgi-bin/
+wget https://huggingface.co/karpathy/tinyllamas/resolve/main/stories15M.bin
 sudo cp stories15M.bin /usr/lib/cgi-bin/
 
 
